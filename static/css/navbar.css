@@ -1,0 +1,126 @@
+/* Definição de variáveis e temas */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --color-logo-gradA: black;
+    --color-logo-gradB: #b01717;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --color-logo-gradA: white;
+    --color-logo-gradB: #b01717;
+}
+
+/* Estilos principais */
+.main {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Título com gradiente */
+.titleHomepage {
+    font-size: 100px;
+    font-weight: bold;
+    font-family: Poppins;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    background: linear-gradient(to right, var(--color-logo-gradA), var(--color-logo-gradB));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Estilos da Navbar */
+.navbarComplete-component {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 103px;
+    text-decoration: none;
+}
+
+.logo-component {
+    align-items: center;
+    margin-left: 44px;
+}
+
+.itens-component {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.loginButtons-component {
+    margin-right: 44px;
+    align-items: center;
+}
+
+.PrimaryButton-component {
+    padding: 12px 34px;
+    background-color: #b01818;
+    border-radius: 10px;
+    margin-right: 44px;
+    font-family: sans-serif;
+    color: white;
+    font-size: 30px;
+    transition: background-color 0.5s ease;
+    text-decoration: none;
+}
+
+.menuItens-component2{
+    margin-left: 65px;
+}
+
+.PrimaryButton-component:hover {
+    background-color: #781010;
+}
+
+.IconButton-homepage {
+    text-decoration: none;
+    color: var(--text-color); /* Cor baseada no tema */
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.IconButton-homepage:hover {
+    color: #781010;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.faqButton-component {
+    font-family: sans-serif;
+    color: var(--text-color); /* Cor baseada no tema */
+    text-decoration: none;
+    font-size: 28px;
+    list-style-type: none;
+    margin-right: 30px;
+}
+.menuItens-component{
+    margin-left:60px;
+}
+
+.logoImage-Component {
+    width: 176px;
+    height: 45px;
+}
+
+.material-symbols-outlined {
+    font-size: 40px!important;
+    margin-right: 56px;
+}
+
+.Buttons-component {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+@media (max-width: 850px){
+    .itens-component{
+        flex-direction: column;
+    }
+}

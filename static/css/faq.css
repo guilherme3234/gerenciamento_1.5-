@@ -1,0 +1,67 @@
+.accordion {
+    display: flex;
+    flex-direction: column;
+    max-width: 750px;
+    min-width: 901px;
+    margin: 50px auto;
+    padding: 0 50px;
+}
+
+.accordion h1 {
+    font-size: 32px;
+    text-align: center;
+}
+
+.accordion-item {
+    margin-top: 16px;
+    font-size: 20px;
+    border-radius: 6px;
+    background: transparent; /* Fundo transparente */
+    transition: background 0.5s;
+}
+
+.accordion-item .accordion-item-title {
+    font-family: Poppins, sans-serif;
+    font-size: 24px; /* Tamanho da fonte para o título das perguntas */
+    position: relative;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 14px 20px;
+    box-sizing: border-box;
+    align-items: center;
+    background: transparent; /* Fundo transparente */
+}
+
+.accordion-item .accordion-item-desc {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px; /* Tamanho da fonte para o texto após apertar */
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--text-color);
+    padding: 10px 20px 20px;
+    box-sizing: border-box;
+    background: transparent; /* Fundo transparente */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease; /* Animação suave */
+}
+
+.accordion-item .icon {
+    margin-left: 14px;
+    font-size: 20px;
+    transition: transform 0.3s ease; /* Animação para a seta */
+}
+
+@media screen and (max-width: 767px) {
+    .accordion {
+        padding: 0 16px;
+    }
+    .accordion h1 {
+        font-size: 22px;
+    }
+}
