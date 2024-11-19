@@ -1,0 +1,136 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block body %}
+
+{% include "navbarAutenticado.html" %}
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<div class="Profile-Body">
+    <div class="container-profile">
+        <img src="{% static 'img/ProfileAvatar.png' %}" alt="Avatar" class="Avatar">
+
+        <div class="sub-container-profile">
+            <form method="POST" action="{% url 'profile' %}">
+                {% csrf_token %}
+                
+                <!-- Campo de Email -->
+                <div class="profile-item">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="{{ email }}" disabled required>
+                    <span class="material-symbols-outlined edit-icon" id="edit-icons" style="color: white;" onclick="openModal('emailModal')"> edit </span>
+                </div>
+
+                <!-- Campo de Nome -->
+                <div class="profile-item">
+                    <label for="email">Nome</label>
+                    <input type="email" id="email" name="email" value="{{ email }}" disabled required>
+                    <span class="material-symbols-outlined edit-icon" id="edit-icons" style="color: white;" onclick="openModal('emailModal')"> edit </span>
+                </div>
+
+                <!-- Campo de Sobrenome -->
+                <div class="profile-item">
+                    <label for="last_name">Sobrenome</label>
+                    <input type="text" id="last_name" name="last_name" value="{{ last_name }}" disabled required>
+                    <span class="material-symbols-outlined edit-icon" id="edit-icons" style="color: white;" onclick="openModal('emailModal')"> edit </span>
+                </div>
+
+                <!-- Campo de ID -->
+                <div class="profile-item">
+                    <label for="id">ID</label>
+                    <input type="text" id="id" value="{{ id }}" disabled>
+                </div>
+
+                <!-- Campo de Sala -->
+                <div class="profile-item">
+                    <label for="sala">Sala</label>
+                    <input type="text" id="sala" value="{{ sala }}" disabled>
+                </div>
+            </form>
+
+            <!-- Exibir mensagens de sucesso -->
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Modal para editar o Email -->
+<div id="emailModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal-profile" onclick="closeModal('emailModal')">&times;</span>
+        <h2>Editar Email</h2>
+        <form method="POST" action="{% url 'profile' %}">
+            {% csrf_token %}
+            <label for="modalEmail">Novo Email:</label>
+            <input type="email" id="modalEmail" name="email" value="{{ email }}" required>
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal para editar o Nome -->
+<div id="nameModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal-profile" onclick="closeModal('nameModal')">&times;</span>
+        <h2>Editar Nome</h2>
+        <form method="POST" action="{% url 'profile' %}">
+            {% csrf_token %}
+            <label for="modalName">Novo Nome:</label>
+            <input type="text" id="modalName" name="first_name" value="{{ first_name }}" required>
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal para editar o Sobrenome -->
+<div id="lastNameModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal-profile" onclick="closeModal('lastNameModal')">&times;</span>
+        <h2>Editar Sobrenome</h2>
+        <form method="POST" action="{% url 'profile' %}">
+            {% csrf_token %}
+            <label for="modalLastName">Novo Sobrenome:</label>
+            <input type="text" id="modalLastName" name="last_name" value="{{ last_name }}" required>
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<!-- JavaScript para abrir e fechar a modal -->
+<script>
+    function openModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "flex";  // Define 'flex' para centralizar a modal
+    }
+
+    function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "none";
+    }
+
+    // Fecha a modal se clicar fora dela
+    window.onclick = function(event) {
+        var emailModal = document.getElementById('emailModal');
+        var nameModal = document.getElementById('nameModal');
+        var lastNameModal = document.getElementById('lastNameModal');
+
+        if (event.target == emailModal) {
+            emailModal.style.display = "none";
+        }
+        if (event.target == nameModal) {
+            nameModal.style.display = "none";
+        }
+        if (event.target == lastNameModal) {
+            lastNameModal.style.display = "none";
+        }
+    }
+</script>
+
+{% endblock %}

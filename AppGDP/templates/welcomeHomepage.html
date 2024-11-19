@@ -1,0 +1,138 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block body %}
+
+{% include "navbarAutenticado.html" %}
+<div class="body-homepage">
+    <header class="cabecalho-welcome">
+        <div class="conteudo-cabecalho">
+            <h1>Bem-vindo ao <span class="destaque"> <br> Patrimônios </span> & <span class="destaque">Ordem</span></h1>
+            <p>Sua solução definitiva para gerenciar patrimônios de maneira eficiente e organizada.</p>
+            {% if is_coordenador %}
+            <a href="{% url 'cadastroUsuario' %}">
+                <button class="botao-cadastro">Cadastre-se</button>
+            </a>
+            {% endif %}
+
+        </div>
+        <div class="box">
+            <img src="{% static 'img/icon1.png' %}" alt="">
+        </div>
+    </header>
+
+    <section class="servicos">
+        {% if is_coordenador %} 
+        <h2>Serviços</h2>
+        <div class="container-servicos">
+
+            <!-- Card de Editar Patrimônios, visível apenas para Coordenadores -->
+            
+            <div class="cartao-servico">
+                <div class="div-cartao">
+                    <span class="material-symbols-outlined"> edit_note </span>
+                    <h3>Editar e Mover Patrimônios</h3>
+                    <p>Soluções eficientes para controlar e monitorar seus ativos.</p>
+                </div>
+                <button class="button-view">Ver</button>
+            </div>
+
+            <!-- Card de Excluir Patrimônio -->
+            <div class="cartao-servico">
+                <div class="div-cartao">
+                    <span class="material-symbols-outlined"> flaky </span>
+                    <h3>Adicionar & Excluir um patrimônio</h3>
+                    <p>Relatórios completos para a melhor tomada de decisões.</p>
+                </div>
+                <a href="itens">
+                    <button class="button-view">Ver</button>
+                </a>
+            </div>
+            {% endif %}
+
+            <!-- Card de Adicionar à lista de manutenção, visível para Coordenadores e Professores -->
+            {% if is_coordenador or is_professor %}
+            <div class="cartao-servico">
+                <div class="div-cartao">
+                    <span class="material-symbols-outlined"> engineering </span>
+                    <h3>Adicionar à lista de manutenção do patrimônio</h3>
+                    <p>Proteção máxima para o seu patrimônio com tecnologia de ponta.</p>
+                </div>
+                <button class="button-view">Ver</button>
+            </div>
+            {% endif %}
+
+            <!-- Card de Ver Tabela de Patrimônios, visível para todos -->
+            {% if is_coordenador or is_professor %}
+            <div class="cartao-servico">
+                <div class="div-cartao">
+                    <span class="material-symbols-outlined"> data_table </span>
+                    <h3>Salas</h3>
+                    <p>Assistência contínua para garantir a tranquilidade da sua operação.</p>
+                </div>
+                <a href="salas">
+                    <button class="button-view">Ver</button>
+                </a>
+            </div>
+            {% endif %}
+
+        </div>
+    </section>
+
+    {% if is_coordenador %}
+    <section class="salas-section">
+        <div class="Salas">
+            <div class="Salas-text">
+                <h2>Salas</h2>
+            </div>
+        </div>
+    </section>
+    
+    <section class="grid-container">
+        {% for item in sala %}
+        <div class="item-card-w">
+            <div class="image-container">
+                <img src="{{ item.link_imagem }}" alt="Imagem da Sala {{ item.sala }}">
+                <span class="badge">{{ item.quantidade_itens }}</span>
+            </div>
+            <div class="item-info">
+                <h3>{{ item.sala }}</h3>
+                <p>{{ item.descricao }}</p>
+                <p>Localizado na {{ item.localizacao }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    {% elif is_professor %}
+    <section class="salas-section">
+        <div class="Salas">
+            <div class="Salas-text">
+                <h2>Sala</h2>
+            </div>
+        </div>
+    </section>
+    
+    <section class="grid-container">
+        {% for item in sala %}
+        <div class="item-card-w">
+            <div class="image-container">
+                <img src="{{ item.link_imagem }}" alt="Imagem da Sala {{ item.sala }}">
+                <span class="badge">{{ item.quantidade_itens }}</span>
+            </div>
+            <div class="item-info">
+                <h3>{{ item.sala }}</h3>
+                <p>{{ item.descricao }}</p>
+                <p>Localizado na {{ item.localizacao }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>Você não tem nenhuma sala atribuída.</p>
+        {% endfor %}
+    </section>
+    {% endif %}
+    
+
+
+</div>
+
+{% endblock %}
