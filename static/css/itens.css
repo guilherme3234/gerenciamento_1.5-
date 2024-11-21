@@ -52,6 +52,7 @@
     display: flex;
     align-items: center; /* Alinha verticalmente os itens */
     gap: 10px; /* Espaço entre os elementos */
+    border-radius: 100px
     
 
     
@@ -265,34 +266,33 @@
 }
 
 @media (max-width: 660px) {
-    .searchIcon{
+    .searchIcon {
         width: 30px;
         height: 30px;
         font-size: 30px!important;
     }
     .item-card {
-        width: 400px;
-        height: 200px;
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        border-radius: 15px;
     }
-    .bg-img img{
-        width: 120px;
-        
+    .bg-img img {
+        width: 100%; /* Ajusta a imagem para o tamanho do contêiner */
+        height: auto; /* Mantém a proporção */
         border-radius: 10px;
     }
-    .add-text{
-        
+    .add-text {
         display: none;
     }
-
-    .bg-body-i-w{
-        padding: 70px;
+    .bg-body-i-w {
+        padding: 20px; /* Diminui o padding para telas menores */
     }
-
-    .add-text.none{
+    .add-text.none {
         display: none;
     }
-
 }
+
 
 
 @media (max-width: 480px) {
